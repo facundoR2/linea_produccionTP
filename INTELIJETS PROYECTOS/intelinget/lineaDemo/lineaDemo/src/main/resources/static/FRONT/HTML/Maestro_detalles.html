@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrador de Fábrica</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/style_MDetalles.css">
+</head>
+<body>
+    <div class="header">
+        <span class="title">🏭 Administrador de Fábrica</span>
+        <span class="user-info">Usuario: Administrador &nbsp; | &nbsp; 14:03:23</span>
+    </div>
+    <div class="main-content">
+        <div class="left-panel">
+            <div>
+                <div class="info-block">
+                    <div class="info-item">
+                        <div class="info-label">Crear Orden de Producción</div>
+                        <input type="text" id="nuevaOrden" placeholder="Ej: OP-2025-1001" style="width:100%;margin-bottom:6px;">
+                        <input type="text" id="productoPadre" placeholder="Código Producto Padre" style="width:100%;margin-bottom:6px;">
+                        <select id="lineaAsignada" style="width:100%;margin-bottom:6px;">
+                            <option value="">Asignar a línea...</option>
+                            <option>EST-01</option>
+                            <option>EST-02</option>
+                            <option>EST-03</option>
+                            <option>EST-04</option>
+                            <option>EST-05</option>
+                        </select>
+                        <button class="admin-btn" id="crearOrdenBtn">Crear Orden</button>
+                    </div>
+                </div>
+                <div class="info-block" style="margin-top:18px;">
+                    <div class="info-item">
+                        <div class="info-label">Órdenes de Producción Activas</div>
+                        <table class="admin-table" id="tablaOrdenes">
+                            <thead>
+                                <tr>
+                                    <th>Orden</th>
+                                    <th>Producto</th>
+                                    <th>Línea</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Órdenes agregadas dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-panel">
+            <div class="instructions-title">Reportes y Consultas</div>
+            <div class="report-block">
+                <strong>📋 Elementos Usados</strong>
+                <div id="elementosUsados">
+                    <ul>
+                        <li>PB-7845-XR - 12 unidades</li>
+                        <li>CP-3421-AB - 8 unidades</li>
+                        <li>TORNILLO M6-20 - 120 unidades</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="report-block">
+                <strong>📈 Generar Reporte</strong>
+                <button class="admin-btn" id="generarReporteBtn">Descargar Reporte PDF</button>
+            </div>
+            <div class="stock-query">
+                <label for="consultaStock">Consulta de Stock de Almacén:</label>
+                <input type="text" id="consultaStock" placeholder="Código o nombre de elemento">
+                <button id="consultarStockBtn">Consultar</button>
+                <div class="stock-result" id="resultadoStock"></div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <span>🔗 Sistema Conectado</span>
+        <span>🗂️ 5 Órdenes Activas</span>
+        <span>Última actualización: 14:03:18</span>
+    </div>
+    <script src="../JS/logic_Maestro_detalles.js"></script>
+</body>
+</html>

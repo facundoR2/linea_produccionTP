@@ -9,11 +9,10 @@ public class OrdenCarga {
     private Integer cantStock;
 
 
-    public OrdenCarga(OrdenProduccion_Detalles ordenProduccionDetalles, Producto componente, Integer cantNecesaria, Integer cantStock){
-        this.ordenProduccionDetalles = ordenProduccionDetalles;
+    public OrdenCarga(Producto componente, Integer cantNecesaria){
         this.componente = componente;
         this.cantNecesaria = cantNecesaria;
-        this.cantStock = cantStock;
+        this.cantStock = componente.getCantidad();
     }
 
     //validar stock suficiente

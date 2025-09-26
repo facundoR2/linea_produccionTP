@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/login.css">
+    <title>Ingresar</title>
+</head>
+<body>
+    
+    <div id="app">
+        <div class="cabecera">
+            <nav class="navbar navbar-expand-lg ">
+                <div class="container-fluid">
+                    <button id="p2_btn_index" @click="irAIndex" type="button" class="btn btn-secondary">Inicio</button>
+                    <p class="navbar-brand">Tramy´s ¡La respuesta a tus dudas!</p>
+                    
+                </div>
+            </nav>
+        </div>
+        <div class=" login-container">
+            <div id="login-title">
+                <h1>Ingresar</h1>
+            </div>
+            <form action="#" class="signin-form" v-on:submit="signIn($event)">
+                <div class="form-outline mb-4">
+                    <label class="label" for="correo">Correo</label>
+                    <input v-model="correo" id="correo" type="email" class="form-control"
+                        placeholder="correo@mail.com" required>
+                </div>
+                <div class="form-outline mb-3">
+                    <label class="label" for="password">Contraseña</label>
+                    <input v-model="password" id="password" type="password" class="form-control"
+                        placeholder="Password" required autocomplete="off">
+                </div>
+                <div id="btn-container">
+                    <button type="submit" class="btn btn-secondary">Sign In</button>
+                    <p>¿Primera vez aqui? <a href="registrarse.html" > vamos a Registrarse</a></p>
+                        
+                </div>
+                
+                
+            </form>
+
+            
+        </div>
+
+        
+        <div class="Piepagina">
+            <div id="texto_piePagina">
+                <div class="container text-center mt-4"></div>
+                <p>&copy; 2023 Tramys. Todos los derechos reservados.</p>
+                <a href="https://www.tramys.com" target="_blank">Más información</a>
+            </div>
+        </div>
+        
+
+    </div>
+
+
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

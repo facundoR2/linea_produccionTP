@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Ensamblaje</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/style_Escaneo.css">
+</head>
+<body>
+    <div class="header">
+        <span class="title">🗂️ Sistema de Ensamblaje</span>
+        <span class="user-info">Usuario: Operario 001 &nbsp; | &nbsp; 14:03:23</span>
+        <span class="counter_product">Cantidad Producida:</span>
+    </div>
+    <div class="main-content">
+        <div class="left-panel">
+            <div>
+                <div class="info-block">
+                    <div class="info-item">
+                        <div class="info-label">Orden de Producción</div>
+                        <div class="info-value" id="ordenCarga">OP-2025-0892</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Version</div>
+                        <div class="info-value">v2.1 </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">N° de Puesto</div>
+                        <div class="info-value">EST-05</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Código Producto Padre</div>
+                        <div class="info-value" id="codigoProducto">PB-7845-XR</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Código Producto</div>
+                        <div class="info-value">CP-3421-AB</div>
+                    </div>
+                </div>
+            </div>
+            <div class="scan-block">
+                <label for="codigoComponente">Escanear Componente</label>
+                <input type="text" id="codigoComponente" placeholder="Escanee o ingrese el código del componente">
+                <button id="agregarComponente">Añadir Componente</button>
+                <div class="scanned-list">
+                    <strong>Componentes Anexados:</strong>
+                    <ul id="listaComponentes"></ul>
+                </div>
+                <div id="mensaje"></div>
+            </div>
+        </div>
+        <div class="right-panel">
+            <div class="instructions-title">Instrucciones de Ensamblaje</div>
+            <div id="pasoContainer">
+                <!-- El paso actual se renderiza aquí -->
+            </div>
+            <div style="display:flex; gap:10px; margin-top:18px;">
+                <button id="btnAnterior" disabled>Anterior</button>
+                <button id="btnSiguiente">Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <span>🔗 Sistema Conectado</span>
+        <span>🔢 35 Componentes</span>
+        <span>Última actualización: 14:03:18</span>
+    </div>
+    <script src="../JS/logic_escaneo_linea.js"></script>
+    
+</body>
+</html>

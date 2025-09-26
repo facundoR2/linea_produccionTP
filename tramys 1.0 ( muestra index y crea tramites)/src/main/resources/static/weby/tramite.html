@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/tramite.css">
+
+    <title>Tramite</title>
+</head>
+<body>
+    <div id="app" style="display: flex; justify-content: center;">
+
+        <div id="Menu_navegacion" class="cabecera">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button id="p2_btn_index" @click="irAIndex" type="button" class="btn btn-secondary">Inicio</button>
+                    <a class="navbar-brand" href="#">Tramy´s ¡La respuesta a tus dudas!</a>
+                
+                    <button id="p2_btn_Cuentas" @click="irACuentas" type="button" class="btn btn-secondary">Cuenta</button>
+                </div>
+            </nav>
+
+        </div>
+        
+        
+
+        <div id="contenido"></div>
+
+
+        <div id="contenido" class="Piepagina">
+            <div id="texto_piePagina"></div>
+        </div>
+    </div>
+    
+    
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+
+    <script src="js/tramite.js"></script>
+</body>
+</html>

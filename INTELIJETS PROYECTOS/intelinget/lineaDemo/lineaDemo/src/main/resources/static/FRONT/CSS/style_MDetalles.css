@@ -1,0 +1,169 @@
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body and Header Styles */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #fafbfc;
+    color: #222;
+}
+.header {
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header .title {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.header .user-info {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+/* Main Content and Panel Styles */
+.main-content {
+    display: flex;
+    gap: 24px;
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.left-panel {
+    flex: 1 1 340px;
+    max-width: 370px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    padding: 24px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Info Block Styles */
+.info-block {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    margin-bottom: 8px;
+}
+.info-item {
+    flex: 1 1 140px;
+    background: #f6f7f9;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 0.98rem;
+}
+.info-label {
+    font-size: 0.82rem;
+    color: #888;
+}
+
+/* Admin Button Styles */
+.admin-btn {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 8px;
+}
+.admin-btn:disabled {
+    background: #aaa;
+}
+
+/* Admin Table Styles */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+.admin-table th,
+.admin-table td {
+    border: 1px solid #e0e0e0;
+    padding: 6px 10px;
+    font-size: 0.97rem;
+}
+.admin-table th {
+    background: #f6f7f9;
+}
+
+/* Report Block Styles */
+.report-block {
+    background: #232323;
+    color: #fff;
+    border-radius: 8px;
+    padding: 18px 18px 12px 18px;
+    margin-bottom: 18px;
+}
+.report-block strong {
+    color: #fff;
+    font-size: 1.05rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Stock Query Styles */
+.stock-query {
+    margin-top: 18px;
+    background: #f6f7f9;
+    border-radius: 8px;
+    padding: 14px 14px 10px 14px;
+}
+.stock-query label {
+    font-size: 0.97rem;
+    color: #444;
+}
+.stock-query input[type="text"] {
+    width: 180px;
+    padding: 6px;
+    margin-right: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+.stock-query button {
+    background: #222;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 14px;
+    font-size: 0.98rem;
+    cursor: pointer;
+}
+
+/* Stock Result Styles */
+.stock-result {
+    margin-top: 8px;
+    font-size: 0.98rem;
+}
+
+/* Footer Styles */
+.footer {
+    background: #222;
+    color: #fff;
+    font-size: 0.98rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 24px;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 10;
+}
+
+/* Media Queries */
+@media (max-width: 900px) {
+    .main-content { flex-direction: column; gap: 18px; padding: 12px; }
+    .left-panel, .right-panel { max-width: 100%; }
+}
