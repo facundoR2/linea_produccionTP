@@ -44,5 +44,11 @@ public class ValeProduccionController {
     }
 
 
+    @GetMapping("/generar-reporte-vales/{idOP}")
+    public ResponseEntity<Object> generarReporteVales(@PathVariable Integer idOP){
+        return ResponseEntity.ok().body(service.listarPorOrden(idOP));
+    }
+
+
 
 }
