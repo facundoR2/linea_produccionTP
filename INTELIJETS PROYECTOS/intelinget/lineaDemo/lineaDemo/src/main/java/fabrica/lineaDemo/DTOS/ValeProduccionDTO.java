@@ -4,13 +4,13 @@ import java.util.List;
 
 public class ValeProduccionDTO {
 
-    private String codigoProducto;
+    private String codigoProducto; //codigo del producto padre
 
-    private List<ProductoDTO> Componentes;
+    private List<ComponenteDTO> Componentes; //lista de los componentes anexados.
 
     public ValeProduccionDTO(){}
 
-    public ValeProduccionDTO (List<ProductoDTO> componentes, String codigoProducto){
+    public ValeProduccionDTO (List<ComponenteDTO> componentes, String codigoProducto){
         this.codigoProducto = codigoProducto;
         this.Componentes = componentes;
     }
@@ -27,11 +27,11 @@ public class ValeProduccionDTO {
         return codigoProducto;
     }
 
-    public List<ProductoDTO> getComponentes() {
+    public List<ComponenteDTO> getComponentes() {
         return Componentes;
     }
 
-    public void setComponentes(List<ProductoDTO> componentes) {
+    public void setComponentes(List<ComponenteDTO> componentes) {
         Componentes = componentes;
     }
 }

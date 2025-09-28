@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class OrdenProduccion_Detalles {
+public class OrdenProduccionDetalles {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +23,9 @@ public class OrdenProduccion_Detalles {
     private Integer cantProducida;
     private LocalDate fechaProduccion;
 
-    public OrdenProduccion_Detalles(){}
+    public OrdenProduccionDetalles(){}
 
-    public OrdenProduccion_Detalles(Producto producto,Formula formula, Integer cantPrevista,LocalDate fechaProduccion){
+    public OrdenProduccionDetalles(Producto producto, Formula formula, Integer cantPrevista, LocalDate fechaProduccion){
         this.formula = formula;
         this.producto = producto;
         this.cantPrevista = cantPrevista;

@@ -3,6 +3,7 @@ package fabrica.lineaDemo.Models;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,7 +12,7 @@ public class ValeProduccion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idVale;
 
-    private Integer idOperacion;
+
 
     @ManyToOne
     @JoinColumn(name = "FK_ID_OP")
@@ -25,8 +26,8 @@ public class ValeProduccion {
 
     private Integer estado; // 1= completado, 2= en espera, 3 = error
 
-    @OneToMany(mappedBy = "valeProduccion")
-    private List<ValeDetalle> detalles;
+    @OneToMany(mappedBy = "valeProduccion",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ValeProduccionDetalle> detalles = new ArrayList<>();
 
     //getters y setters
 
@@ -63,27 +64,23 @@ public class ValeProduccion {
         return fechaRegistro;
     }
 
-    public Integer getIdVale() {
-        return idVale;
-    }
-
     public void setIdVale(Integer idVale) {
         this.idVale = idVale;
     }
 
-    public Integer getIdOperacion() {
-        return idOperacion;
+    public Integer getIdVale() {
+        return idVale;
     }
 
-    public void setIdOperacion(Integer idOperacion) {
-        this.idOperacion = idOperacion;
+    public void setOrdenProduccion(OrdenProduccion ordenProduccion) {
+        this.ordenProduccion = ordenProduccion;
     }
 
-    public List<ValeDetalle> getDetalles() {
+    public List<ValeProduccionDetalle> getDetalles() {
         return detalles;
     }
 
-    public void setDetalles(List<ValeDetalle> detalles) {
+    public void setDetalles(List<ValeProduccionDetalle> detalles) {
         this.detalles = detalles;
     }
 }

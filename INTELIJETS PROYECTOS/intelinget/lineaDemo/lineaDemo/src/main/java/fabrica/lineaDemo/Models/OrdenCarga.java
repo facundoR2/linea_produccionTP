@@ -2,7 +2,7 @@ package fabrica.lineaDemo.Models;
 
 public class OrdenCarga {
 
-    private OrdenProduccion_Detalles ordenProduccionDetalles;
+    private OrdenProduccionDetalles ordenProduccionDetalles;
     private Producto componente;
 
     private Integer cantNecesaria;
@@ -50,11 +50,11 @@ public class OrdenCarga {
         return componente;
     }
 
-    public void setOrdenProduccionDetalles(OrdenProduccion_Detalles ordenProduccionDetalles) {
+    public void setOrdenProduccionDetalles(OrdenProduccionDetalles ordenProduccionDetalles) {
         this.ordenProduccionDetalles = ordenProduccionDetalles;
     }
 
-    public OrdenProduccion_Detalles getOrdenProduccionDetalles() {
+    public OrdenProduccionDetalles getOrdenProduccionDetalles() {
         return ordenProduccionDetalles;
     }
 }

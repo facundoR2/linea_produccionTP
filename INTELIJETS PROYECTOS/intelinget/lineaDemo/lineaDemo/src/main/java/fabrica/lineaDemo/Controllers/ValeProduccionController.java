@@ -22,10 +22,13 @@ public class ValeProduccionController {
 
     //crear valeProduccion
 
-    @PostMapping("/crear")
+    @PostMapping("/crear") //endpoint para crear vales donde se registran los componentes.
     public ResponseEntity<Object> crearVale(@RequestBody ValeProduccionDTO valeProduccionDTO){
+        //verificamos que  el codigo del producto no sea Nulo.
         if(valeProduccionDTO.getCodigoProducto() == null){
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body("El codigo del producto dentro del vale no existe");
+
+
 
         }
 

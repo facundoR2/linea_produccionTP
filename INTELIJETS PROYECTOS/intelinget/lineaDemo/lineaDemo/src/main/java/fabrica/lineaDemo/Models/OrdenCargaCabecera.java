@@ -13,7 +13,7 @@ public class OrdenCargaCabecera {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idOPC",referencedColumnName = "idOPC")
-    private OrdenProduccion_Detalles ordenProduccionDetalles;
+    private OrdenProduccionDetalles ordenProduccionDetalles;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "codigo_formula",referencedColumnName = "codigoFormula")
@@ -37,11 +37,11 @@ public class OrdenCargaCabecera {
         return idOCC;
     }
 
-    public OrdenProduccion_Detalles getOrdenProduccionDetalles() {
+    public OrdenProduccionDetalles getOrdenProduccionDetalles() {
         return ordenProduccionDetalles;
     }
 
-    public void setOrdenProduccionDetalles(OrdenProduccion_Detalles ordenProduccionDetalles) {
+    public void setOrdenProduccionDetalles(OrdenProduccionDetalles ordenProduccionDetalles) {
         this.ordenProduccionDetalles = ordenProduccionDetalles;
     }
 

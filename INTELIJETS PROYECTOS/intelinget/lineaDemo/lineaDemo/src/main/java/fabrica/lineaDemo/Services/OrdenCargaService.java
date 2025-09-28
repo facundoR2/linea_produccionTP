@@ -3,11 +3,10 @@ package fabrica.lineaDemo.Services;
 import fabrica.lineaDemo.DTOS.OrdenProduccionRequest;
 import fabrica.lineaDemo.Models.OrdenCarga;
 import fabrica.lineaDemo.Models.OrdenCargaCabecera;
-import fabrica.lineaDemo.Models.OrdenProduccion_Detalles;
+import fabrica.lineaDemo.Models.OrdenProduccionDetalles;
 import fabrica.lineaDemo.Models.Producto;
 import fabrica.lineaDemo.Repositorys.OrdenCargaCabeceraRepository;
 import fabrica.lineaDemo.Repositorys.OrdenProduccionDetallesRepository;
-import fabrica.lineaDemo.Repositorys.OrdenProduccionRepository;
 import fabrica.lineaDemo.Repositorys.ProductoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -32,7 +31,7 @@ public class OrdenCargaService {
     @Transactional
     public OrdenCargaCabecera procesarOrden(OrdenProduccionRequest request){
         //validar que la Orden de Produccion existe.
-        OrdenProduccion_Detalles detalle = detallesRepository.findById(request.getIdOrdenProduccion())
+        OrdenProduccionDetalles detalle = detallesRepository.findById(request.getIdOrdenProduccion())
                 .orElseThrow(() -> new IllegalArgumentException("orden de produccion no encontrada"));
 
         //generamos array con todos las validaciones necesarias

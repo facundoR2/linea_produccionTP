@@ -8,7 +8,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idUsuario;
 
     private String nombre;
     private String email;
@@ -47,5 +47,13 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getId() {
+        return idUsuario;
+    }
+
+    public void setId(int id) {
+        this.idUsuario = id;
     }
 }
