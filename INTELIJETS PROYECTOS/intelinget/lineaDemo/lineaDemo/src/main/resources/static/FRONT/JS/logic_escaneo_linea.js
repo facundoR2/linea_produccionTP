@@ -1,5 +1,23 @@
 // Lógica para la página de escaneo de línea de producción
 
+const { use } = require("react");
+
+//generamos Un ValeLectura para trackear el progreso de cada Producto.
+const Lectura = {
+    codigoproducto: "", //codigo serial del producto terminado.
+    puestoActual: 0,
+    tiempo: Date.now(),
+    estado: "En Proceso", // "En Proceso", "Completado"
+    componentes: [{
+        nombre: "",
+        codigo: "",  //codigo del producto(componente)
+        cantidad: 0
+    }],
+    usuario: "",
+
+}
+
+
 // Función para iniciar o reiniciar los procesos
 function iniciarProcesos() {
     // Reinicia el proceso actual y la lista de componentes
@@ -38,24 +56,140 @@ function iniciarProcesos() {
     if (window.username) {
         userinfo.username = window.username;
     }
-    fetch('/api/info-principal',{
-        method: 'GET',
+}
+function crearVale() {
+
+    //traemos el usuario logueado
+    const UsuarioDTO = {
+        id: window.userId || 0,
+        username: window.username || "invitado",
+        nombre: window.nombre || "Invitado",
+        
+    };
+
+
+    //consultamos el ENDPOINT y traemos el vale.
+    fetch('http://localhost:9090/api/produccion/crear-Vale/${UsuarioDTO}',{
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: window.userinfo ? JSON.stringify(userinfo) : null,
-        
-        
+        body: JSON.stringify(UsuarioDTO)
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Error en la respuesta del servidor');
+        }
+        return response.json();
     })
+    .then(data => {
+        //guardamos el vale en una variable global
+        window.Lectura = data || {};
+        console.log('Vale creado:', window.Lectura);
+    })
+    .catch(error => {
+        console.error('Error al crear el vale:', error);
+        const mensaje = document.getElementById('mensaje');
+        if (mensaje) {
+            mensaje.textContent = "Error al crear el vale. Intente nuevamente.";
+            mensaje.className = "error";
+        }
+    });
+    actualizarVale();
+}
+function actualizarVale(){
+    window.Lectura.codigoproducto = document.getElementById('codigoProducto').textContent || "";
+
+}
+    
+
+
+
+
+
+
+
+
+// Espera a que el DOM esté completamente cargado
+function buscarInfo() {
+    fetch('http://localhost:9090/api/produccion/info-general')
+    .then(response => response.json())
+    .then(data => {
+        // Actualiza la información en la página
+        document.getElementById('codigoProducto').textContent = data.codigoProducto || 'N/A';
+        document.getElementById('ordenCarga').textContent = data.ordeProduccion || 'N/A';
+        document.getElementById('cantidadProduccion').textContent = data.cantidadProduccion || 'N/A';
+        document.getElementById('procesoActual').textContent = data.procesoActual || 'N/A';
+        window.procesos = data.procesos || [];
+        if (window.procesos.length > 0) {
+            document.getElementById('descripcionProceso').textContent = window.procesos[window.procesoActual].descripcion || 'N/A';
+        }
+    });
+   
+}
+function comprobarProceso() {
+        // Envía el JSON con la información actual a la BD y obtiene la cantidad de componentes por proceso
+        const payload = {
+            procesoActual: window.procesoActual,
+            componentesEscaneados: window.listaComponentes,
+            usuario: window.username || ""
+        };
+
+        fetch('http://localhost:9090/api/produccion/comprobar-proceso', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
         .then(response => response.json())
         .then(data => {
-            window.procesos = data.procesos || [];
-            window.pasosPorProceso = data.pasosPorProceso || {};
-            if (typeof actualizarInformacion === 'function') actualizarInformacion();
+            // Actualiza la cantidad máxima de componentes requeridos para el proceso actual
+            window.maxComponentes = data.cantidadComponentes || 35;
+            // Actualiza la UI si es necesario
+            if (typeof actualizarLista === 'function') actualizarLista();
+            if (typeof bloquearHastaEscanear === 'function') bloquearHastaEscanear();
         })
         .catch(error => {
-            console.error('Error al cargar la información principal:', error);
+            console.error('Error al comprobar el proceso:', error);
+            const mensaje = document.getElementById('mensaje');
+            if (mensaje) {
+                mensaje.textContent = "Error al consultar la cantidad de componentes. Intente nuevamente.";
+                mensaje.className = "error";
+            }
         });
-}
-// Espera a que el DOM esté completamente cargado
+    }
+    function pasarAlsuiguientePuesto(Lectura) {
+        const confirmacion = window.confirm("¿Desea pasar al siguiente puesto?");
+        if (!confirmacion) return;
+        if (confirmacion) {
+            // Envía el JSON con la información actual a la BD para pasar al siguiente puesto
+            fetch('http://localhost:9090/api/produccion/valeLectura/${lecturaId}/siguiente'),{
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Lectura)
+            }
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la respuesta del servidor');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // informar al usuario que se pasó al siguiente puesto
+                alert("Producto enviado al siguiente puesto");
+                console.log('Respuesta del servidor:', data);
+            })
+            .catch(error => {
+                console.error('Error al pasar al siguiente puesto:', error);
+                const mensaje = document.getElementById('mensaje');
+                if (mensaje) {
+                    mensaje.textContent = "Error al pasar al siguiente puesto. Intente nuevamente.";
+                    mensaje.className = "error";
+                }
+            });
+        }else {
+            alert("Operación cancelada. El producto permanece en el puesto actual.");
+        }
+        
+    }
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- Información principal ---
