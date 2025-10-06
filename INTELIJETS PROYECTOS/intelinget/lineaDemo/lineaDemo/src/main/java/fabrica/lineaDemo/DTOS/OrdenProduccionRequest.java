@@ -2,7 +2,7 @@ package fabrica.lineaDemo.DTOS;
 
 import java.util.List;
 
-public class OrdenProduccionRequest {
+public class OrdenProduccionRequest { // para generacion de Reportes.
     private Integer idOrdenProduccion;
     private List<ComponenteRequest> componentes;
 
