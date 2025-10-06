@@ -22,6 +22,9 @@ public class FormulaPuesto {
     @JoinColumn(name = "idPP", referencedColumnName = "idPP")
     private ProcesoPaso procesoPaso;
 
+    //orden del puesto dentro de la formula.
+    private Integer orden;
+
     public FormulaPuesto(){}
 
     public FormulaPuesto(FormulaDetalle formulaDetalle, Puesto puesto, ProcesoPaso procesoPaso){
@@ -63,5 +66,13 @@ public class FormulaPuesto {
 
     public void setId_FP(Integer id_FP) {
         this.id_FP = id_FP;
+    }
+
+    public Integer getOrden() {
+        return orden;
+    }
+
+    public void setOrden(Integer orden) {
+        this.orden = orden;
     }
 }
