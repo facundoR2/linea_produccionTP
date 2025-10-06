@@ -10,10 +10,10 @@ public class Producto {
     @Column(name = "id_producto")
     private Integer id_producto;
 
-    @Column(name = "codigo_producto", length = 50, nullable = false)
+    @Column(name = "codigo_producto",unique = true, nullable = false)
     private String codigo;
 
-    @Column(name = "producto",length = 100, nullable = false)
+    @Column(name = "producto",length = 100,  nullable = false)
     private String nombre;
 
     @Column(length = 100)
