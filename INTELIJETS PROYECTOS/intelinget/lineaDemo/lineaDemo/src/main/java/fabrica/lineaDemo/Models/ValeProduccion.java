@@ -24,7 +24,7 @@ public class ValeProduccion {
 
     private LocalDate fechaRegistro;
 
-    private Integer estado; // 1= completado, 2= en espera, 3 = error
+    private Integer estado; // 1= completado, 2= en proceso, 3 = error
 
     @OneToMany(mappedBy = "valeProduccion",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ValeProduccionDetalle> detalles = new ArrayList<>();

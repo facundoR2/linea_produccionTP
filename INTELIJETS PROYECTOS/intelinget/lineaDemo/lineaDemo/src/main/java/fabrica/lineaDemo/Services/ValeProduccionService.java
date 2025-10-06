@@ -34,36 +34,6 @@ public class ValeProduccionService {
 
     }
 
-    @Transactional
-    public ValeProduccionDetalle guardarDetalle(Integer valeProduccionId, ValeLectura valeLectura){
-        ValeProduccion produccion = valeProduccionrep.findById(valeProduccionId)
-                .orElseThrow(() -> new RuntimeException("ValeProduccion no encontrado"));
-
-        ValeProduccionDetalle detalle = new ValeProduccionDetalle();
-        detalle.setIdTrazado(valeLectura.getIdTrazado());
-        detalle.setPuestoFinal(valeLectura.getPuestoActual());
-        detalle.setFechaHora(valeLectura.getTiempo());
-
-        if (valeLectura.getUsuario() != null && valeLectura.getUsuario().getId() != null){
-            Usuario usuario = usuarioRepository.findById(valeLectura.getUsuario().getId())
-                    .orElseThrow(()-> new RuntimeException("Usuario no encontrado"));
-            detalle.setUsuario(usuario);
-        }
-        detalle.setValeProduccion(produccion);
-
-        for (ComponenteDTO c : valeLectura.getComponentes()){
-            ValeProduccionDetalleComponente comp = new ValeProduccionDetalleComponente();
-            comp.setNombre(c.getNombre());
-            comp.setCodigoProducto(c.getCodigoProducto());
-            comp.setCantidad(c.getCantidad());
-            comp.setValeProduccionDetalle(detalle);
-            detalle.getComponentes().add(comp);
-        }
-        produccion.getDetalles().add(detalle);
-        valeProduccionrep.save(produccion); //cascada guarda_Todo
-        return detalle;
-    }
-
 
 
 

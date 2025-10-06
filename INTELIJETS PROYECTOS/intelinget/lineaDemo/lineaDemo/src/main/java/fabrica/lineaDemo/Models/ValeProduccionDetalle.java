@@ -10,26 +10,31 @@ import java.util.List;
 public class ValeProduccionDetalle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idVPD;
+    private Integer idVPD; //id de la tabla.
 
     private String codigoProducto; //serial del producto terminado.
 
-    private String idTrazado;
-    private Integer puestoFinal;
 
-    private LocalDateTime fechaHora;
+    private LocalDateTime fechaHora; //fecha a la que se registró,
 
-    @ManyToOne
-    @JoinColumn(name = "usuario_id", referencedColumnName = "idUsuario")
-    private Usuario usuario;
 
+
+
+    //referencia al ValeProduccion del que proviene.
     @ManyToOne
     @JoinColumn(name = "vale_produccion_id", referencedColumnName = "idVale")
     private ValeProduccion valeProduccion;
 
 
-    @OneToMany(mappedBy = "valeProduccionDetalle", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ValeProduccionDetalleComponente> componentes = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "CodigoComponente",referencedColumnName = "id_producto")
+    private Producto componente;
+
+    private Integer puesto; //puesto donde se escaneo los componentes.
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", referencedColumnName = "idUsuario")
+    private Usuario usuario;  //  usuario o operario que hizo el escaneo.
 
 
     private Integer estado; // 1=completado; 2=en proceso, 5 = error
@@ -37,13 +42,6 @@ public class ValeProduccionDetalle {
     //getters y setters
 
 
-    public String getIdTrazado() {
-        return idTrazado;
-    }
-
-    public void setIdTrazado(String idTrazado) {
-        this.idTrazado = idTrazado;
-    }
 
     public String getCodigoProducto() {
         return codigoProducto;
@@ -53,13 +51,7 @@ public class ValeProduccionDetalle {
         this.codigoProducto = codigoProducto;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 
     public ValeProduccion getValeProduccion() {
         return valeProduccion;
@@ -69,9 +61,6 @@ public class ValeProduccionDetalle {
         this.valeProduccion = valeProduccion;
     }
 
-    public void setComponentes(List<ValeProduccionDetalleComponente> componentes) {
-        this.componentes = componentes;
-    }
 
     public Integer getEstado() {
         return estado;
@@ -81,13 +70,7 @@ public class ValeProduccionDetalle {
         this.estado = estado;
     }
 
-    public Integer getPuestoFinal() {
-        return puestoFinal;
-    }
 
-    public void setPuestoFinal(Integer puestoFinal) {
-        this.puestoFinal = puestoFinal;
-    }
 
     public Integer getIdVPD() {
         return idVPD;
@@ -97,8 +80,12 @@ public class ValeProduccionDetalle {
         this.idVPD = idVPD;
     }
 
-    public List<ValeProduccionDetalleComponente> getComponentes() {
-        return componentes;
+    public void setComponente(Producto componente) {
+        this.componente = componente;
+    }
+
+    public Producto getComponente() {
+        return componente;
     }
 
     public LocalDateTime getFechaHora() {
@@ -109,4 +96,19 @@ public class ValeProduccionDetalle {
         this.fechaHora = fechaHora;
     }
 
+    public Integer getPuesto() {
+        return puesto;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setPuesto(Integer puesto) {
+        this.puesto = puesto;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
 }
