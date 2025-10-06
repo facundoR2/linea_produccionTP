@@ -1,5 +1,6 @@
 package fabrica.lineaDemo.Services;
 
+import fabrica.lineaDemo.DTOS.UsuarioDTO;
 import fabrica.lineaDemo.Models.FormulaPuesto;
 import fabrica.lineaDemo.Repositorys.FormulaPuestosRepository;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,8 @@ public class FormulaPuestoService {
     public  List<FormulaPuesto> listarPorPuesto(Integer idPuesto){
         return rep.findByPuestoIdP(idPuesto);
     }
+
+
+
 
 }
