@@ -1,5 +1,7 @@
 package fabrica.lineaDemo.Services;
 
+import fabrica.lineaDemo.DTOS.InfoGeneralDTO;
+import fabrica.lineaDemo.DTOS.ValeLectura;
 import fabrica.lineaDemo.Models.OrdenProduccion;
 import fabrica.lineaDemo.Models.ValeProduccionDetalle;
 import fabrica.lineaDemo.Repositorys.OrdenProduccionRepository;
@@ -22,25 +24,34 @@ public class OrdenProduccionService {
     }
 
 
-    public Boolean crearOrden(OrdenProduccion ordenProduccion){
-        //Validamos la Orden y la generamos.
-        OrdenProduccion orden = ordenProdRepo.findById(ordenProduccion.getIdOP()).orElseThrow(()->new RuntimeException("Orden de Produccion No encontrada."));
-
-        //en base a la cantidad, generamos los vales de produccion y los registramos.
-        var cant = orden.getCantidad();
-        List<ValeProduccionDetalle> lote = null;
-        var count = 0;
-        while (count<cant){
-            ValeProduccionDetalle vale = new ValeProduccionDetalle();
-            vale.setCodigoProducto(orden.getProducto().getCodigo());
-            valeDetalleRepo.save(vale);
-            count++;
-
-        }
-
-        return true;
+    public String BuscarProducto (){
+        OrdenProduccion orden =  ordenProdRepo.getReferenceById(1); // por ahora solo va a haber una orden.
+        //la idea es que busque por dia (hoy).
+        String producto = orden.getProducto().getCodigo();
+        return producto;
 
 
     }
+
+    public InfoGeneralDTO darInfoGeneral(){
+        InfoGeneralDTO dto = new InfoGeneralDTO();
+        //conseguimos el nro de OrdenProduccion (en este caso sera el 1 nomas)
+        OrdenProduccion orden = ordenProdRepo.getReferenceById(1);
+        //conseguimos el codigo de formula.
+        String codigoFormula = orden.getFormula().getCodigoFormula();
+        //el codigo del producto terminado.
+        String codigoProducto = orden.getProducto().getCodigo();
+
+        String codigoOrdenProduccion = String.format("%d-%s-%s",orden.getId(),codigoFormula,codigoProducto);
+
+        //cargamos el serial (seria por ej: 1-NBK001-100_1ntk_1)
+        dto.setOrdenProduccion(codigoOrdenProduccion);
+        dto.setVersionFormula(orden.getFormula().getVersion());
+        dto.setCodigoProducto(codigoProducto);
+
+        return dto;
+    }
+
+
 
 }
